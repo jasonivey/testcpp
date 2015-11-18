@@ -1,5 +1,5 @@
+<<<<<<< HEAD
 -std=c++14
 -stdlib=libc++
--L/usr/local/Cellar/boost/1.58.0/lib
 -lboost_date_time
--I/Users/jasonivey/dev/test/testcpp
+-I.

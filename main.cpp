@@ -2,20 +2,32 @@
 #include <cstdlib>
 #include <vector>
 #include <algorithm>
+#include <iterator>
+#include <boost/filesystem.hpp>
 
 using namespace std;
 
-int main(int, char**)
-{
-    auto vec = vector<int>{1, 2, 3, 4};
-    vector<string> vec1 = {"hello", "world", "this", "is", "a", "sentence"};
-    std::for_each(vec.begin(), vec.end(), [](int &x){cout << ++x << endl;});
-    //foreach(vec.begin(), vec.end(), (
-    copy(begin(vec), end(vec), ostream_iterator<int>(cout, ", "));
-    cout << endl;
-    copy(cbegin(vec1), cend(vec1), ostream_iterator<string>(cout, " "));
-    cout << endl;
-    
-    cout << "\nhello world\n";     
+vector<string> GetFileNames(const string& p) {
+    using namespace boost::filesystem;
+    vector<string> filenames;
+    try {
+        transform(directory_iterator(p),
+                  directory_iterator(),
+                  back_inserter(filenames),
+                  [&filenames](const directory_entry& entry) { return entry.path().string(); });
+    } catch (const std::exception& ex) {
+        cerr << "caught exception " << ex.what() << endl;
+    }
+    return filenames;
+}
+
+int main(int argc, char*argv[]) {
+    if (argc < 2) {
+        cerr << "ERROR: must pass a directory as an argument to the binary" << endl;
+        return EXIT_FAILURE;
+    }
+    cout << "Finding all the files within directory: " << argv[1] << endl;
+    const vector<string> &filenames = GetFileNames(argv[1]);
+    copy(begin(filenames), end(filenames), ostream_iterator<string>(cout, "\n"));
     return EXIT_SUCCESS;
 }
