@@ -17,11 +17,11 @@ INCLUDE_DIRS        =-I$(APP_DIR)
 # Common
 #CXXFLAGS           +=-isystem$(BOOST_LIB)
 #COMMON_FLAGS       =-DDEBUG -g -ggdb3 -O2 -fsanitize=memory -fno-omit-frame-pointer
-COMMON_FLAGS        =-DDEBUG -g -ggdb3 -O0 -std=c++11 -stdlib=libc++
+COMMON_FLAGS        =-DDEBUG -g -ggdb3 -O0 -std=c++14 -stdlib=libc++
 
 FLAGS               =$(CXXFLAGS) $(COMMON_FLAGS)
 LIBRARIES           =-lboost_date_time
-#LIBRARY_DIR			=-Lpath
+LIBRARY_DIR			=-L/usr/local/Cellar/boost/1.58.0/lib
 
 #------------------------------------------------------------------------------
 
