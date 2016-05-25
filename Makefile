@@ -10,18 +10,19 @@ PROGRAM_PATH        =$(APP_DIR)/$(PROGRAM_NAME)
 
 #CC                 =gcc-4.8
 #CXX                    =g++-4.8
-CC                  =clang
-CXX                 =clang++
-INCLUDE_DIRS        =-I$(APP_DIR)
+CC                  =clang-3.7
+CXX                 =clang++-3.7
+INCLUDE_DIRS        =-I$(APP_DIR) -isystem/usr/include/jsoncpp
 
 # Common
 #CXXFLAGS           +=-isystem$(BOOST_LIB)
 #COMMON_FLAGS       =-DDEBUG -g -ggdb3 -O2 -fsanitize=memory -fno-omit-frame-pointer
-COMMON_FLAGS        =-DDEBUG -g -ggdb3 -O0 -std=c++14 -stdlib=libc++
+#COMMON_FLAGS        =-DDEBUG -g -ggdb3 -O0 -std=c++14 -stdlib=libc++ -lcrypto -lssl
+COMMON_FLAGS        =-DDEBUG -g -ggdb3 -O0 -std=c++11 -ljsoncpp -Wall -Werror
 
 FLAGS               =$(CXXFLAGS) $(COMMON_FLAGS)
-LIBRARIES           =-lboost_date_time
-LIBRARY_DIR			=-L/usr/local/Cellar/boost/1.58.0/lib
+#LIBRARIES           =-lboost_date_time
+#LIBRARY_DIR			=-L/usr/local/Cellar/boost/1.58.0/lib
 
 #------------------------------------------------------------------------------
 

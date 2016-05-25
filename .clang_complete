@@ -1,5 +1,7 @@
-<<<<<<< HEAD
+-g
+-O0
 -std=c++14
 -stdlib=libc++
--lboost_date_time
+-fPIC
 -I.
+-DDEBUG
