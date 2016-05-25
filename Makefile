@@ -20,8 +20,9 @@ INCLUDE_DIRS        =-I$(APP_DIR)
 COMMON_FLAGS        =-DDEBUG -g -ggdb3 -O0 -std=c++14 -stdlib=libc++
 
 FLAGS               =$(CXXFLAGS) $(COMMON_FLAGS)
-LIBRARIES           =-lboost_date_time
+LIBRARIES           =-lboost_filesystem -lboost_system
 LIBRARY_DIR			=-L/usr/local/Cellar/boost/1.58.0/lib
+INCLUDE_DIRS        +=-I/usr/local/include
 
 #------------------------------------------------------------------------------
 
