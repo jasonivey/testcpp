@@ -25,6 +25,7 @@ LIBRARIES           =-lboost_filesystem -lboost_system
 ifeq ($(OS),Darwin)
 	COMMON_FLAGS        =-DDEBUG -g -ggdb3 -O0 -std=c++11 -stdlib=libc++ -Wall -Werror
 	LIBRARY_DIR			=-L/usr/local/Cellar/boost/1.58.0/lib
+	INCLUDE_DIRS        +=-I/usr/local/include
 else
 	COMMON_FLAGS        =-DDEBUG -g -ggdb3 -O0 -std=c++11 -Wall -Werror
 endif
