@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 
 APP_DIR             =$(shell pwd)
-
+OS 					:=$(shell uname)
 SOURCE              =main.cpp
 PROGRAM_NAME        =test
 PROGRAM_PATH        =$(APP_DIR)/$(PROGRAM_NAME)
@@ -12,17 +12,24 @@ PROGRAM_PATH        =$(APP_DIR)/$(PROGRAM_NAME)
 #CXX                    =g++-4.8
 CC                  =clang-3.7
 CXX                 =clang++-3.7
-INCLUDE_DIRS        =-I$(APP_DIR) -isystem/usr/include/jsoncpp
+#INCLUDE_DIRS        =-I$(APP_DIR) -isystem/usr/include/jsoncpp
+INCLUDE_DIRS        =-I$(APP_DIR) 
 
 # Common
 #CXXFLAGS           +=-isystem$(BOOST_LIB)
 #COMMON_FLAGS       =-DDEBUG -g -ggdb3 -O2 -fsanitize=memory -fno-omit-frame-pointer
 #COMMON_FLAGS        =-DDEBUG -g -ggdb3 -O0 -std=c++14 -stdlib=libc++ -lcrypto -lssl
-COMMON_FLAGS        =-DDEBUG -g -ggdb3 -O0 -std=c++11 -ljsoncpp -Wall -Werror
+
+LIBRARIES           =-lboost_filesystem -lboost_system
+
+ifeq ($(OS),Darwin)
+	COMMON_FLAGS        =-DDEBUG -g -ggdb3 -O0 -std=c++11 -stdlib=libc++ -Wall -Werror
+	LIBRARY_DIR			=-L/usr/local/Cellar/boost/1.58.0/lib
+else
+	COMMON_FLAGS        =-DDEBUG -g -ggdb3 -O0 -std=c++11 -Wall -Werror
+endif
 
 FLAGS               =$(CXXFLAGS) $(COMMON_FLAGS)
-#LIBRARIES           =-lboost_date_time
-#LIBRARY_DIR			=-L/usr/local/Cellar/boost/1.58.0/lib
 
 #------------------------------------------------------------------------------
 
