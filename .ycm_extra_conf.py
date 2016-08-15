@@ -2,10 +2,12 @@ flags = [
         '-Wall',
         '-Wextra',
         '-I/home/jasonivey/dev/testcpp',
+        '-isystem',
+        '/usr/include/jsoncpp/',
         '-g',
         '-O0',
         '-std=c++14',
-        '-stdlib=libc++',
+#        '-stdlib=libc++',
         '-fPIC',
         '-DDEBUG',
         ]
