@@ -15,20 +15,20 @@ INCLUDE_DIRS        =-I$(APP_DIR)
 #COMMON_FLAGS       =-DDEBUG -g -ggdb3 -O2 -fsanitize=memory -fno-omit-frame-pointer
 #COMMON_FLAGS        =-DDEBUG -g -ggdb3 -O0 -std=c++14 -stdlib=libc++ -lcrypto -lssl
 
-LIBRARIES           =-lboost_filesystem -lboost_system
+#LIBRARIES           =-lboost_filesystem -lboost_system
 
 ifeq ($(OS),Darwin)
-	CC              =clang
-	CXX             =clang++
-	COMMON_FLAGS    =-DDEBUG -g -ggdb3 -O0 -std=c++11 -stdlib=libc++ -Wall -Werror
-	LIBRARY_DIR		=-L/usr/local/Cellar/boost/1.58.0/lib
-	INCLUDE_DIRS    +=-I/usr/local/include
+	CC              =/usr/bin/clang
+	CXX             =/usr/bin/clang++
+	COMMON_FLAGS    =-DDEBUG -g -ggdb3 -O0 -nostdinc++ -std=c++17 -stdlib=libc++ -lc++abi -Weverything -Wall -Werror -Wold-style-cast
+	LIBRARY_DIR		=-L/usr/local/opt/llvm/lib
+	INCLUDE_DIRS    +=-isystem /usr/local/opt/llvm/include/c++/v1 -isystem /usr/local/include
 else
 	#CC             =gcc-4.8
 	#CXX            =g++-4.8
-	CC              =clang-3.7
-	CXX             =clang++-3.7
-	COMMON_FLAGS    =-DDEBUG -g -ggdb3 -O0 -std=c++11 -Wall -Werror
+	CC              =clang-6.0
+	CXX             =clang++-6.0
+	COMMON_FLAGS    =-DDEBUG -g -ggdb3 -O0 -std=c++11 -Wall -Werror- -Wold-style-cast
 endif
 
 FLAGS               =$(CXXFLAGS) $(COMMON_FLAGS)
