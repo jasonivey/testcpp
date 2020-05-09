@@ -1,3 +1,7 @@
+// vim: awa:sts=4:ts=4:sw=4:et:cin:fdm=manual:tw=120:ft=cpp
+// autowriteall, softtabstop, tabstop, shiftwidth, expandtab, cindent, foldmethod, textwidth, filetype
+
+#if 0
 #include <iostream>
 #include <cstdlib>
 #include <vector>
@@ -42,4 +46,23 @@ int main(int /*argc*/, char ** /*argv*/)
 
     return EXIT_SUCCESS;
 }
+#else
 
+#include <boost/version.hpp>
+#include <algorithm>
+#include <iostream>
+#include <iterator>
+#include <cstdlib>
+
+using namespace std;
+
+int main(int argc, const char **argv) {
+    cout << "Input arguments:\n";
+    size_t count = 0;
+    for_each(argv, argv + argc, [&count](const char *arg) {
+        cout << "arg " << (++count) << ": " << arg << endl;
+    });
+    cout << "BOOST VERSON: " << BOOST_LIB_VERSION << endl;
+    return EXIT_SUCCESS;
+}
+#endif
